@@ -9,6 +9,8 @@ import AddUser from './Pages/Users/createUser'
 import CarouselAdd from './Pages/Add/Carousel'
 import AddSlider from './Pages/Add/AddSlider'
 import { useEffect } from 'react'
+import CarouselDetails from './Pages/Add/CarouselDetails'
+import EditCarosel from './Pages/Add/EditCarosel'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path='/user/new' element={<AddUser />} />
           <Route path='/slider' element={<CarouselAdd />} />
           <Route path='/slider/add' element={<AddSlider />} />
+          <Route path='/slider/:id' element={<CarouselDetails />} />
+          <Route path='/slider/edit/:id' element={<EditCarosel />} />
         </Routes>
       </BrowserRouter>
     </>

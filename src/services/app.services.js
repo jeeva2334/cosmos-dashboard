@@ -148,3 +148,54 @@ export async function getSliders(){
         return null
     }
 }
+
+export async function getSliderDetails(title){
+    try {
+        console.log("Started")
+        const dbRef = ref(dbuser)
+        const data = await get(child(dbRef,`slider/${title}`))
+        console.log("done",data.val())
+        return data.val()
+    } catch (error) {
+       console.log(error) 
+    }
+}
+
+export async function deleteSLide(id){
+    try {
+        const dbRef = ref(dbuser,`slider/${id}`)
+        await remove(dbRef)
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+export async function editSlideDetails(id,title,desc,image){
+    try {
+        const dbRef = ref(dbuser,`slider/${id}`)
+        const updates = {
+            title:title,
+            description:desc,
+            image:image
+        }
+        await update(dbRef,updates)
+        console.log("done update")
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+export async function DeleteAllSlides(){
+    try {
+        const dbRef = ref(dbuser,`slider/`)
+        await remove(dbRef)
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
