@@ -38,7 +38,7 @@ export async function getMovies(){
     }
 }
 
-export async function createMovies(title,desc,image,duration,release){
+export async function createMovies(title,desc,image,duration,release,time){
     try {
        console.log("hello") 
        await set(ref(dbuser,`movies/${title}`),{
@@ -46,7 +46,8 @@ export async function createMovies(title,desc,image,duration,release){
         description:desc,
         image:image,
         duration:duration,
-        release:release
+        release:release,
+        timing:time
        })
        console.log("done")
     } catch (error) {

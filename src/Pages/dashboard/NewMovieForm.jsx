@@ -17,6 +17,8 @@ export default function AddMovie(){
     const [open,setOpen] = useState(false);
     const [msg,setMsg] = useState('');
     const [variant,setVariant] = useState('')
+    const [inp,setInp] = useState('')
+    const [timings,setTimings] = useState([])
     const [loading,setLoading] = useState(false)
 
     const handleSubmit = async() => {
@@ -36,7 +38,7 @@ export default function AddMovie(){
         const url = await getDownloadURL(storageRef)
         console.log("ended")
         console.log(url)
-        const create = createMovies(title,desc,url,duration,date)
+        const create = createMovies(title,desc,url,duration,date,inp)
         if(create){
             setMsg("Created Succesfully")
             setVariant("success")
@@ -110,6 +112,14 @@ export default function AddMovie(){
                             </FormLabel>
                             <div className="input-group" style={{display: 'flex', justifyContent:'center',alignItems: 'center'}}>
                                 <input name="date" id="Email" className="input" type="date" value={date} onChange={(e)=>setDate(e.target.value)} />
+                            </div>
+                        </Stack>
+                        <Stack sx={{width:'50%'}}>
+                            <FormLabel>
+                                Timings(seperate it with ",")
+                            </FormLabel>
+                            <div className="input-group" style={{display: 'flex', justifyContent:'center',alignItems: 'center'}}>
+                                <input name="timing" id="Email" className="input" type="text" value={inp} onChange={(e)=>setInp(e.target.value)} />
                             </div>
                         </Stack>
                     </Stack>
